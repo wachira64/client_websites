@@ -1843,14 +1843,8 @@
 
         function updateTestimonialSlide() {
             if (!testimonialSlider || totalTestimonials === 0) return;
-            const container = testimonialSlider.parentElement;
-            const activeCard = testimonialSlider.querySelector('.testimonial-card');
-            if (!container || !activeCard) return;
 
-            const cardWidth = activeCard.getBoundingClientRect().width;
-            const containerWidth = container.getBoundingClientRect().width;
-            const stepPercent = (cardWidth / containerWidth) * 100;
-
+            const stepPercent = 100 / totalTestimonials;
             testimonialSlider.style.transform = `translateX(-${testimonialIndex * stepPercent}%)`;
         }
 
