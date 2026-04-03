@@ -366,6 +366,7 @@
 
         .testimonial-slider {
             display: flex;
+            width: 300%;
             margin: 0;
             padding: 0;
             transition: transform 0.7s ease-in-out;
@@ -390,32 +391,7 @@
             position: relative;
         }
 
-        .testimonial-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            border: 1px solid var(--accent);
-            background: rgba(255, 255, 255, 0.95);
-            color: var(--deep-earth);
-            font-size: 1.5rem;
-            line-height: 1;
-            cursor: pointer;
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
 
-        .testimonial-prev {
-            left: 0.5rem;
-        }
-
-        .testimonial-next {
-            right: 0.5rem;
-        }
 
         @media (max-width: 768px) {
             .testimonial-slider {
@@ -1636,8 +1612,6 @@
                 <p>Thoughtful, embodied insights that speak to calmness, rhythm, and presence.</p>
             </div>
             <div class="testimonial-slider-wrap">
-                <button class="testimonial-btn testimonial-prev" aria-label="Previous testimonial">‹</button>
-                <button class="testimonial-btn testimonial-next" aria-label="Next testimonial">›</button>
                 <div class="testimonial-slider">
                     <article class="testimonial-card">
                         <p>“I found calmness in each breath and became more aware of my body rhythm. The sessions helped me listen to what my body was asking for.”</p>
@@ -1890,8 +1864,6 @@
 
         // Testimonial carousel controls for smoother, non-clipping transitions
         const testimonialSlider = document.querySelector('.testimonial-slider');
-        const prevTestimonialBtn = document.querySelector('.testimonial-prev');
-        const nextTestimonialBtn = document.querySelector('.testimonial-next');
         const totalTestimonials = testimonialSlider ? testimonialSlider.children.length : 0;
         let testimonialIndex = 0;
 
@@ -1906,18 +1878,10 @@
             updateTestimonialSlide();
         }
 
-        function prevTestimonial() {
-            testimonialIndex = (testimonialIndex - 1 + totalTestimonials) % totalTestimonials;
-            updateTestimonialSlide();
-        }
-
-        if (nextTestimonialBtn) nextTestimonialBtn.addEventListener('click', () => { nextTestimonial(); restartTestimonialInterval(); });
-        if (prevTestimonialBtn) prevTestimonialBtn.addEventListener('click', () => { prevTestimonial(); restartTestimonialInterval(); });
-
-        let testimonialInterval = setInterval(nextTestimonial, 6000);
+        let testimonialInterval = setInterval(nextTestimonial, 8000);
         function restartTestimonialInterval() {
             clearInterval(testimonialInterval);
-            testimonialInterval = setInterval(nextTestimonial, 6000);
+            testimonialInterval = setInterval(nextTestimonial, 8000);
         }
 
         function isDateFullyBooked(date) {
