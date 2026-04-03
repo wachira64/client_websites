@@ -299,6 +299,38 @@
             animation: fadeInUp 1s ease forwards 0.7s;
         }
 
+        .hero-poem {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.125rem;
+            font-style: normal;
+            color: var(--text-primary);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            text-align: center;
+            line-height: 1.6;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 0.8s;
+            position: relative;
+        }
+
+        .hero-poem::before {
+            content: '"';
+            font-size: 3rem;
+            color: var(--accent);
+            position: absolute;
+            left: -20px;
+            top: -10px;
+        }
+
+        .hero-poem::after {
+            content: '"';
+            font-size: 3rem;
+            color: var(--accent);
+            position: absolute;
+            right: -20px;
+            bottom: -30px;
+        }
+
         .hero-cta {
             display: flex;
             gap: 1rem;
@@ -349,6 +381,57 @@
         @keyframes scrollPulse {
             0%, 100% { opacity: 0.5; height: 60px; }
             50% { opacity: 1; height: 80px; }
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, rgba(232, 226, 217, 0.9), rgba(245, 242, 237, 0.9));
+        }
+
+        .testimonial-slider-wrap {
+            overflow: hidden;
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .testimonial-slider {
+            display: flex;
+            width: 300%;
+            gap: 1.5rem;
+            animation: slideTestimonials 18s linear infinite;
+        }
+
+        .testimonial-card {
+            flex: 0 0 33.3333%;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid rgba(140, 114, 85, 0.25);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            color: var(--text-primary);
+            text-align: center;
+            min-height: 220px;
+        }
+
+        .testimonial-card p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--deep-earth);
+            margin-bottom: 1.2rem;
+        }
+
+        .testimonial-card footer {
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        @keyframes slideTestimonials {
+            0%, 30% { transform: translateX(0%); }
+            33%, 63% { transform: translateX(-33.3333%); }
+            66%, 96% { transform: translateX(-66.6667%); }
+            100% { transform: translateX(0%); }
         }
 
         /* Buttons */
@@ -1430,8 +1513,7 @@
             <div class="nav-inner">
                 <a href="#" class="logo">Embodied healing with Dollop of sunshine</a>
                 <ul class="nav-links">
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#benefits">Benefits</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
                     <li><a href="#services">Services</a></li>
                     <li><a href="#booking">Book Session</a></li>
                 </ul>
@@ -1448,8 +1530,7 @@
     <div class="mobile-overlay" id="mobileOverlay"></div>
     <div class="mobile-menu" id="mobileMenu">
         <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#benefits">Benefits</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
             <li><a href="#services">Services</a></li>
             <li><a href="#booking">Book Session</a></li>
         </ul>
@@ -1467,8 +1548,22 @@
         </div>
         <div class="hero-content">
             <p class="hero-subtitle">Welcome to your journey of embodied healing</p>
-            <h1>Reconnect With Your Body's Wisdom</h1>
-            <p class="hero-description">Experience transformative somatic therapy that helps you release tension, process emotions, and find your natural state of ease and balance.</p>
+            <h1>Embodied healing with a dollop of sunshine</h1>
+            <p class="hero-description">A gentle invitation to commune with and re-member the wisdom of your body; this wondrous vessel that continues to carry you through the varied seasons. I welcome you to journey alongside me as we attune to the gentle whispers of your nervous system, tend to the hearth of your being and hold space for your expansion. My promise is to offer you companionship for the unfolding, with steadfast assurance and tools for navigating the path. Here, we savour slowness, listen inward, track sensations and allow curiosity to guide us. We seek the sacred in the mundane.</p>
+            <blockquote class="hero-poem">
+                In the slowness, a shift begins<br>
+                Feels like grounded presence<br>
+                We move with the gait of trust<br>
+                Making space for insight to be felt<br>
+                Steadier ground beneath the feet<br>
+                Fuller breaths and deeper sensations<br>
+                We will neither strive nor fix<br>
+                With time you may find,<br>
+                A quiet sense of belonging within the self,<br>
+                Firmer boundaries and resilience abound<br>
+                Karibu nyumbani,<br>
+                You are coming home to self.
+            </blockquote>
             <div class="hero-cta">
                 <a href="#booking" class="btn btn-primary">Book a Session</a>
                 <a href="#about" class="btn btn-secondary">Learn More</a>
@@ -1480,92 +1575,28 @@
         </div>
     </section>
 
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <div class="about-grid">
-                <div class="about-image reveal">
-                    <img src="./images/pexels-kindelmedia-7298908.jpg" alt="Somatic therapy illustration" loading="lazy" onerror="this.style.display=\'none\';">
-                </div>
-                <div class="about-content reveal">
-                    <span class="section-label">About Somatic Experience</span>
-                    <h2>What is Somatic Therapy?</h2>
-                    <p>Somatic experience therapy is a body-centered approach that recognizes the body as a primary source of healing and awareness. Through gentle, mindful attention to bodily sensations, we can release trauma held in the body and restore natural equilibrium.</p>
-                    <p>This integrative approach combines principles from psychology, neuroscience, and bodywork to help you develop a deeper relationship with your physical self, leading to greater resilience, emotional regulation, and overall wellbeing.</p>
-                    <blockquote class="about-quote">
-                        "The body keeps the score. Memory is stored in the body, and healing happens through the body."
-                    </blockquote>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Benefits Section -->
-    <section class="benefits" id="benefits">
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
         <div class="container">
             <div class="section-header reveal">
-                <span class="section-label">Why Choose Somatic Work</span>
-                <h2>Benefits of Somatic Experience</h2>
-                <p>Discover how embodied healing can transform your relationship with yourself and the world around you.</p>
+                <span class="section-label">Client Reflections</span>
+                <h2>What People Experience</h2>
+                <p>Thoughtful, embodied insights that speak to calmness, rhythm, and presence.</p>
             </div>
-            <div class="benefits-grid">
-                <div class="benefit-card reveal">
-                    <div class="benefit-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-                        </svg>
-                    </div>
-                    <h3>Trauma Release</h3>
-                    <p>Gently release stored trauma and tension from the body, allowing for natural healing and recovery.</p>
-                </div>
-                <div class="benefit-card reveal">
-                    <div class="benefit-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-                        </svg>
-                    </div>
-                    <h3>Emotional Balance</h3>
-                    <p>Develop greater awareness and regulation of your emotional states through body-mind connection.</p>
-                </div>
-                <div class="benefit-card reveal">
-                    <div class="benefit-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"/>
-                            <path d="M12 6v6l4 2"/>
-                        </svg>
-                    </div>
-                    <h3>Present Awareness</h3>
-                    <p>Cultivate deep presence and mindfulness, anchoring yourself in the here and now.</p>
-                </div>
-                <div class="benefit-card reveal">
-                    <div class="benefit-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
-                            <path d="M12 16v-4M12 8h.01"/>
-                        </svg>
-                    </div>
-                    <h3>Self-Trust</h3>
-                    <p>Rebuild trust in your body's innate wisdom and natural capacity for healing and regulation.</p>
-                </div>
-                <div class="benefit-card reveal">
-                    <div class="benefit-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
-                            <circle cx="9" cy="7" r="4"/>
-                            <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
-                        </svg>
-                    </div>
-                    <h3>Relationships</h3>
-                    <p>Improve connection with others through greater self-awareness and embodied presence.</p>
-                </div>
-                <div class="benefit-card reveal">
-                    <div class="benefit-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
-                        </svg>
-                    </div>
-                    <h3>Energy Flow</h3>
-                    <p>Restore natural energy movement throughout the body, releasing blockages and stagnation.</p>
+            <div class="testimonial-slider-wrap">
+                <div class="testimonial-slider">
+                    <article class="testimonial-card">
+                        <p>“I found calmness in each breath and became more aware of my body rhythm. The sessions helped me listen to what my body was asking for.”</p>
+                        <footer>— Eric Maina</footer>
+                    </article>
+                    <article class="testimonial-card">
+                        <p>“Slow practices revealed a new level of resilience. I learned to trust the subtle signals of my nervous system.”</p>
+                        <footer>— Eric Maina</footer>
+                    </article>
+                    <article class="testimonial-card">
+                        <p>“With every session, I felt steadier ground under my feet and easier access to inner quiet—incredible support for my unfolding journey.”</p>
+                        <footer>— Eric Maina</footer>
+                    </article>
                 </div>
             </div>
         </div>
@@ -1709,7 +1740,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Embodied healing with Dollop of sunshine. All rights reserved.</p>
+                <p>&copy; 2026 Embodied healing with Dollop of sunshine. All rights reserved.</p>
             </div>
         </div>
     </footer>
