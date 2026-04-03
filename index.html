@@ -367,8 +367,9 @@
         .testimonial-slider {
             display: flex;
             width: 300%;
-            gap: 0;
-            animation: slideTestimonials 18s ease-in-out infinite;
+            margin: 0;
+            padding: 0;
+            transition: transform 0.7s ease-in-out;
         }
 
         .testimonial-card {
@@ -383,10 +384,74 @@
             text-align: center;
             min-height: 220px;
             box-sizing: border-box;
+            margin: 0;
         }
 
-        .testimonial-card + .testimonial-card {
-            margin-left: 1.5rem;
+        .testimonial-slider-wrap {
+            position: relative;
+        }
+
+        .testimonial-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 1px solid var(--accent);
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--deep-earth);
+            font-size: 1.5rem;
+            line-height: 1;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .testimonial-prev {
+            left: 0.5rem;
+        }
+
+        .testimonial-next {
+            right: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .testimonial-slider {
+                width: 300%;
+                gap: 0;
+            }
+            .testimonial-card {
+                flex: 0 0 100%;
+                padding: 1.25rem;
+            }
+            .testimonial-slider-wrap {
+                max-width: 100%;
+                padding: 0 0.75rem;
+            }
+            .testimonial-btn {
+                width: 52px;
+                height: 52px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .testimonial-card p {
+                font-size: 1rem;
+                line-height: 1.5;
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
+            }
+            .testimonial-card footer {
+                font-size: 0.9rem;
+            }
+            .testimonial-btn {
+                width: 54px;
+                height: 54px;
+                font-size: 1.4rem;
+            }
         }
 
         @media (max-width: 768px) {
@@ -425,13 +490,6 @@
         .testimonial-card footer {
             font-weight: 600;
             color: var(--accent);
-        }
-
-        @keyframes slideTestimonials {
-            0%, 30% { transform: translateX(0%); }
-            33%, 62% { transform: translateX(-100%); }
-            65%, 94% { transform: translateX(-200%); }
-            98%, 100% { transform: translateX(0%); }
         }
 
         /* Buttons */
@@ -1580,6 +1638,8 @@
                 <p>Thoughtful, embodied insights that speak to calmness, rhythm, and presence.</p>
             </div>
             <div class="testimonial-slider-wrap">
+                <button class="testimonial-btn testimonial-prev" aria-label="Previous testimonial">‹</button>
+                <button class="testimonial-btn testimonial-next" aria-label="Next testimonial">›</button>
                 <div class="testimonial-slider">
                     <article class="testimonial-card">
                         <p>“I found calmness in each breath and became more aware of my body rhythm. The sessions helped me listen to what my body was asking for.”</p>
@@ -1828,6 +1888,39 @@
             const dateStr = date.toISOString().split('T')[0];
             const timeDB  = toDBTime(time);
             return cachedBookings.some(b => b.session_date === dateStr && b.session_time === timeDB);
+        }
+
+        // Testimonial carousel controls for smoother, non-clipping transitions
+        const testimonialSlider = document.querySelector('.testimonial-slider');
+        const prevTestimonialBtn = document.querySelector('.testimonial-prev');
+        const nextTestimonialBtn = document.querySelector('.testimonial-next');
+        const totalTestimonials = testimonialSlider ? testimonialSlider.children.length : 0;
+        let testimonialIndex = 0;
+
+        function updateTestimonialSlide() {
+            if (!testimonialSlider) return;
+            testimonialSlider.style.transform = `translateX(-${testimonialIndex * 100}%)`;
+        }
+
+        function nextTestimonial() {
+            testimonialIndex = (testimonialIndex + 1) % totalTestimonials;
+            updateTestimonialSlide();
+        }
+
+        function prevTestimonial() {
+            testimonialIndex = (testimonialIndex - 1 + totalTestimonials) % totalTestimonials;
+            updateTestimonialSlide();
+        }
+
+        if (nextTestimonialBtn) nextTestimonialBtn.addEventListener('click', () => { nextTestimonial(); restartTestimonialInterval(); });
+        if (prevTestimonialBtn) prevTestimonialBtn.addEventListener('click', () => { prevTestimonial(); restartTestimonialInterval(); });
+
+        let testimonialInterval = setInterval(nextTestimonial, 6000);
+        function restartTestimonialInterval() {
+            clearInterval(testimonialInterval);
+            testimonialInterval = setInterval(nextTestimonial, 6000);
+        }
+
         }
 
         function isDateFullyBooked(date) {
