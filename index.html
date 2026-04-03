@@ -351,38 +351,6 @@
             }
         }
 
-        .scroll-indicator {
-            position: absolute;
-            bottom: 3rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-            opacity: 1;
-            animation: none;
-        }
-
-        .scroll-indicator span {
-            font-size: 0.75rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--text-secondary);
-        }
-
-        .scroll-indicator-line {
-            width: 1px;
-            height: 60px;
-            background: linear-gradient(to bottom, var(--accent), transparent);
-            animation: none;
-        }
-
-        @keyframes scrollPulse {
-            0%, 100% { opacity: 0.5; height: 60px; }
-            50% { opacity: 1; height: 80px; }
-        }
-
         /* Testimonials */
         .testimonials {
             padding: 4rem 0;
