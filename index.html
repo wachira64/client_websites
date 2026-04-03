@@ -1896,8 +1896,9 @@
         let testimonialIndex = 0;
 
         function updateTestimonialSlide() {
-            if (!testimonialSlider) return;
-            testimonialSlider.style.transform = `translateX(-${testimonialIndex * 100}%)`;
+            if (!testimonialSlider || totalTestimonials === 0) return;
+            const shiftPercent = (testimonialIndex * 100) / totalTestimonials;
+            testimonialSlider.style.transform = `translateX(-${shiftPercent}%)`;
         }
 
         function nextTestimonial() {
@@ -1917,8 +1918,6 @@
         function restartTestimonialInterval() {
             clearInterval(testimonialInterval);
             testimonialInterval = setInterval(nextTestimonial, 6000);
-        }
-
         }
 
         function isDateFullyBooked(date) {
