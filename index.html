@@ -375,7 +375,7 @@
             width: 1px;
             height: 60px;
             background: linear-gradient(to bottom, var(--accent), transparent);
-            animation: scrollPulse 2s ease-in-out infinite;
+            animation: none;
         }
 
         @keyframes scrollPulse {
@@ -413,6 +413,19 @@
             color: var(--text-primary);
             text-align: center;
             min-height: 220px;
+        }
+
+        @media (max-width: 768px) {
+            .testimonial-slider {
+                width: 300%;
+            }
+            .testimonial-card {
+                flex: 0 0 100%;
+            }
+            .testimonial-slider-wrap {
+                max-width: 100%;
+                padding: 0 1rem;
+            }
         }
 
         .testimonial-card p {
